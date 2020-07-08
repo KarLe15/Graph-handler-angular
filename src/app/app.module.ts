@@ -9,6 +9,8 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { GraphsComponent } from './render/graphs/graphs.component';
 import { GraphSelectorComponent } from './commons/graph-selector/graph-selector.component';
 import {GojsAngularModule} from 'gojs-angular';
+import {LoadGraphsService} from './services/load-graphs.service';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,11 @@ import {GojsAngularModule} from 'gojs-angular';
     BrowserAnimationsModule,
     MaterialModule,
     GojsAngularModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    LoadGraphsService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
