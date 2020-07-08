@@ -1,0 +1,23 @@
+//.container {
+//  min-height: 100%;
+//  display: flex;
+//}
+.content-container {
+  display: flex;
+  height: 75vh;
+}
+#myDiagramDiv {
+  flex: 5;
+  margin-left: 1.2em;
+  //background-color: #0b00e4;
+}
+#statsCard {
+  flex: 3;
+}
+
+.myDiagramDiv {
+  background: whitesmoke;
+  width: 95%;
+  height: 95%;
+  border: 1px solid black;
+}

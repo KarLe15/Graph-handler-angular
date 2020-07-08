@@ -1,0 +1,76 @@
+<div class="container">
+<!--  This component will handle Observables -->
+  <app-graph-selector></app-graph-selector>
+  <div class="content-container">
+    <div id="statsCard">
+      <div class="example-action-buttons">
+        <button mat-button (click)="accordion.openAll()">Expand All</button>
+        <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+      </div>
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Basic Stats
+            </mat-panel-title>
+            <mat-panel-description>
+              nodes, edges, BFS ...
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <button mat-button >Nodes</button>
+          <button mat-button >Edges</button>
+          <button mat-button >BFS</button>
+          <button mat-button >Ratio</button>
+
+        </mat-expansion-panel>
+        <mat-expansion-panel >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Paths
+            </mat-panel-title>
+            <mat-panel-description>
+              Shortest Paths, constraints
+              <mat-icon>map</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <button mat-button >Dijkstra</button>
+          <button mat-button >A star</button>
+          <button mat-button >DFS</button>
+          <button mat-button >Heurestics</button>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Covering Tree
+            </mat-panel-title>
+            <mat-panel-description>
+              Minimal Covering Tree, Steiner Tree ...
+              <mat-icon>date_range</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <button mat-button >Steiner Tree</button>
+          <button mat-button >Prim</button>
+          <button mat-button >Kruskal</button>
+          <button mat-button >Bellman-Ford</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div id="myDiagramDiv">
+      <gojs-diagram
+          #myDiagram
+          [initDiagram]='initDiagram'
+          [nodeDataArray]='diagramNodeData' [linkDataArray]='diagramLinkData'
+          [divClassName]='diagramDivClassName'
+          [modelData]='diagramModelData'
+          [skipsDiagramUpdate]='skipsDiagramUpdate'
+          (modelChange)='diagramModelChange($event)'>
+      </gojs-diagram>
+    </div>
+  </div>
+
+
+</div>
