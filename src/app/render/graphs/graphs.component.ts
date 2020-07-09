@@ -61,6 +61,15 @@ export class GraphsComponent implements OnInit {
         )
       );
 
+    dia.linkTemplate =
+      $(go.Link,
+        $(go.Shape),                           // this is the link shape (the line)
+        $(go.Shape, { toArrow: 'Standard' }),
+        $(go.TextBlock,
+          new go.Binding('text', 'label')
+        )
+      );
+
     return dia;
   }
   // When the diagram model changes, update app data to reflect those changes
