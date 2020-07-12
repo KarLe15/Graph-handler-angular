@@ -1,0 +1,24 @@
+.spaced {
+  margin: 1.6em;
+  padding: 1.2em;
+}
+.flex {
+  display: flex;
+  div {
+    flex: 2;
+    padding-left: 1.3em;
+    padding-right: 1.3em;
+  }
+  *:last-child {
+    flex: 1;
+  }
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.cent {
+  width: 100%;
+}

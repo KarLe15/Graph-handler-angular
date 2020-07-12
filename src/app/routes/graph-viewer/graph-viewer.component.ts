@@ -5,11 +5,11 @@ import {DataSyncService} from 'gojs-angular';
 import {LoadGraphsService} from '../../services/load-graphs.service';
 @Component({
   selector: 'app-graphs',
-  templateUrl: './graphs.component.html',
-  styleUrls: ['./graphs.component.scss'],
+  templateUrl: './graph-viewer.component.html',
+  styleUrls: ['./graph-viewer.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class GraphsComponent implements OnInit {
+export class GraphViewerComponent implements OnInit {
   @ViewChild(MatAccordion, {static: true}) accordion: MatAccordion;
   // GoJS data
   public diagramNodeData: Array<go.ObjectData> = [];

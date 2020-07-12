@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar  color="primary">
   <button mat-icon-button (click)="drawer.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
@@ -14,11 +14,7 @@
 
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+    <app-drawer-menu></app-drawer-menu>
   </mat-drawer>
   <div class="sidenav-content">
     <router-outlet class="sidenav-content"></router-outlet>

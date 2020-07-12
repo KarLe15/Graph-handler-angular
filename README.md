@@ -5,3 +5,9 @@ List of libraries to display graphs:
 	<li>Sigma.js : http://sigmajs.org/</li>
 	<li>P5JS</li>
 </ul>
+
+Design frameworks :
+<ul>
+    <li>Clarity for angular (from VMWare) : https://clarity.design/documentation/get-started</li>
+    <li>Angular Material</li>
+</ul>
