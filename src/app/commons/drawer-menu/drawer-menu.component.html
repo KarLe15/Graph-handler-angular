@@ -1,5 +1,11 @@
 <div class="link-list">
-  <button mat-raised-button routerLink="/"  color="primary">Home</button>
-  <button mat-raised-button routerLink="/viewer" color="primary" >View Graph</button>
-  <button mat-raised-button routerLink="/upload" color="primary" >Upload Graph</button>
+  <button
+          [ngClass]="{'active': router.url === l.link}"
+          *ngFor="let l of links"
+          mat-button
+          [routerLink]="l.link"
+          color="primary">
+    <mat-icon color="accent">{{ l.icon }}</mat-icon>
+    {{ l.text }}
+  </button>
 </div>

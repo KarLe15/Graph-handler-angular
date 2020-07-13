@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { GraphUploaderComponent } from './routes/graph-uploader/graph-uploader.component';
 import { DrawerMenuComponent } from './commons/drawer-menu/drawer-menu.component';
 import { ListGraphsComponent } from './commons/list-graphs/list-graphs.component';
+import { HomePageComponent } from './routes/home-page/home-page.component';
+import { DashboardComponent } from './routes/dashboard/dashboard.component';
+import { AboutComponent } from './routes/about/about.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ListGraphsComponent } from './commons/list-graphs/list-graphs.component
     GraphSelectorComponent,
     GraphUploaderComponent,
     DrawerMenuComponent,
-    ListGraphsComponent
+    ListGraphsComponent,
+    HomePageComponent,
+    DashboardComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

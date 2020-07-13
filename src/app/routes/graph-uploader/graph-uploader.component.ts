@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoadGraphsService } from '../../services/load-graphs.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-graph-uploader',
@@ -69,6 +69,9 @@ export class GraphUploaderComponent implements OnInit {
   }
 
   handleError(err) {
+    this.snackBar.open('Could not upload graph', 'dismiss', {
+      duration: 2000,
+    });
     console.error(err);
   }
 }
