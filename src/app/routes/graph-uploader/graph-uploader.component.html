@@ -1,1 +1,66 @@
-<p>graph-uploader works!</p>
+<mat-tab-group mat-align-tabs="center">
+  <mat-tab label="File">
+    <div class="container">
+      <form
+        [formGroup]="formGroupFile"
+        (ngSubmit)="handleSubmitFile(formGroupFile.value)"
+      >
+        <div class="field">
+          <mat-form-field appearance="outline">
+            <mat-label>Graph Name</mat-label>
+            <input matInput placeholder="Name" formControlName="graphName" required>
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field appearance="fill">
+            <mat-label>Graph File</mat-label>
+            <ngx-mat-file-input
+                #removableInput
+                formControlName="graphFile"
+                placeholder="Removable Input"></ngx-mat-file-input>
+            <button mat-icon-button matSuffix *ngIf="!removableInput.empty" (click)="removableInput.clear($event)">
+              <mat-icon>clear</mat-icon>
+            </button>
+            <mat-hint>supported : .csv .txt </mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="field" >
+          <button type="submit" mat-raised-button color="primary">Upload</button>
+        </div>
+
+      </form>
+    </div>
+  </mat-tab>
+
+
+  <mat-tab label="Points">
+    <div class="container">
+      <form
+        [formGroup]="formGroupContent"
+        (submit)="handleSubmitContent()"
+      >
+        <div class="field">
+          <mat-form-field appearance="outline">
+            <mat-label>Graph Name</mat-label>
+            <input matInput placeholder="Name" formControlName="graphName" required>
+          </mat-form-field>
+        </div>
+
+        <div class="field">
+          <mat-form-field appearance="fill">
+            <mat-label>Graph Content</mat-label>
+            <textarea matInput placeholder="Graph Edges" formControlName="graphContent" required></textarea>
+            <mat-hint>3,4 : edge from 3 to 4</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="field" >
+          <button type="submit" mat-raised-button color="primary">Upload</button>
+        </div>
+      </form>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+

@@ -27,4 +27,11 @@ export class LoadGraphsService {
     console.log('trying to load graph');
     return this.http.get<GraphDescriptor>(`${this.baseURL}/graph`);
   }
+
+  public postGraph(body: FormData): Observable<any> {
+    console.log('form data', body.get('name'));
+    console.log('form data', body.get('graphName'));
+    console.log('form data', body.get('graphFile'));
+    return this.http.post<any>(`${this.baseURL}/graph`, body);
+  }
 }

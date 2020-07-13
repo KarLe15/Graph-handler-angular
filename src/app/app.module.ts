@@ -14,6 +14,7 @@ import { LoadGraphsService } from './services/load-graphs.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphUploaderComponent } from './routes/graph-uploader/graph-uploader.component';
 import { DrawerMenuComponent } from './commons/drawer-menu/drawer-menu.component';
+import { ListGraphsComponent } from './commons/list-graphs/list-graphs.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DrawerMenuComponent } from './commons/drawer-menu/drawer-menu.component
     GraphViewerComponent,
     GraphSelectorComponent,
     GraphUploaderComponent,
-    DrawerMenuComponent
+    DrawerMenuComponent,
+    ListGraphsComponent
   ],
   imports: [
     BrowserModule,
