@@ -4,8 +4,8 @@ import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule,
-  MatIconModule, MatInputModule,
-  MatSelectModule, MatTabsModule,
+  MatIconModule, MatInputModule, MatListModule,
+  MatSelectModule, MatSnackBarModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,6 +30,8 @@ import {MaterialFileInputModule} from 'ngx-material-file-input';
     MatTabsModule,
     MatInputModule,
     MaterialFileInputModule, // additionnal extern module
+    MatListModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatToolbarModule,
@@ -44,6 +46,8 @@ import {MaterialFileInputModule} from 'ngx-material-file-input';
     MatTabsModule,
     MatInputModule,
     MaterialFileInputModule,
+    MatListModule,
+    MatSnackBarModule,
   ]
 })
 export class MaterialModule { }

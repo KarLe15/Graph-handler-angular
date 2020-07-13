@@ -1,0 +1,12 @@
+.graph-list-container {
+  height: 30vh;
+}
+.graph-list {
+  max-height: 100%;
+  overflow: scroll;
+}
+.list-item {
+  &:hover {
+    background: rgba(177, 177, 177, 0.72);
+  }
+}

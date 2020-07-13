@@ -1,1 +1,10 @@
-<p>list-graphs works!</p>
+<mat-card>
+  <h4>All Graphs</h4>
+  <div class="graph-list-container">
+    <mat-list #graphs class="graph-list">
+      <mat-list-item class="list-item" *ngFor="let g of graphsList$ | async">
+        {{g}}
+      </mat-list-item>
+    </mat-list>
+  </div>
+</mat-card>

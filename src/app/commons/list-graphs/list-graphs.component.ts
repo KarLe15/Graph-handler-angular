@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoadGraphsService} from '../../services/load-graphs.service';
 
 @Component({
   selector: 'app-list-graphs',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListGraphsComponent implements OnInit {
 
-  constructor() { }
+  public graphsList$;
+  constructor(
+    private graphLoader: LoadGraphsService,
+  ) { }
 
   ngOnInit() {
+    this.graphsList$ = this.graphLoader.getAllGraphs();
   }
 
 }

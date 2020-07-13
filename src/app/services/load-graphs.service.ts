@@ -12,12 +12,12 @@ export class LoadGraphsService {
 
   private baseURL = 'http://localhost:3000';
   constructor(private http: HttpClient) { }
-
+  // TODO :: delete this method
   public getNodes(): Observable<NodeDescriptor[]> {
     console.log('trying to load nodes');
     return this.http.get<NodeDescriptor[]>(`${this.baseURL}/nodes`);
   }
-
+  // TODO :: delete this method
   public getEdges(): Observable<EdgeDescriptor[]> {
     console.log('trying to load edges');
     return this.http.get<EdgeDescriptor[]>(`${this.baseURL}/edges`);
@@ -29,9 +29,10 @@ export class LoadGraphsService {
   }
 
   public postGraph(body: FormData): Observable<any> {
-    console.log('form data', body.get('name'));
-    console.log('form data', body.get('graphName'));
-    console.log('form data', body.get('graphFile'));
     return this.http.post<any>(`${this.baseURL}/graph`, body);
+  }
+
+  public getAllGraphs(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.baseURL}/graphs`);
   }
 }
