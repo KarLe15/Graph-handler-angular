@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
+// import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { GraphViewerComponent } from './routes/graph-viewer/graph-viewer.component';
 import { GraphUploaderComponent } from './routes/graph-uploader/graph-uploader.component';
 import { HomePageComponent } from './routes/home-page/home-page.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'about', component: AboutComponent},
   {path: 'upload', component: GraphUploaderComponent},
-  {path: '**', component: NotFoundComponent}
+  {path: '**', component: HomePageComponent}
 ];
 
 @NgModule({

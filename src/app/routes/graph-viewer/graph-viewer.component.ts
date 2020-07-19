@@ -1,8 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {MatAccordion} from '@angular/material';
+
 import * as go from 'gojs';
 import {DataSyncService} from 'gojs-angular';
 import {LoadGraphsService} from '../../services/load-graphs.service';
+import {MatAccordion} from '@angular/material/expansion';
 @Component({
   selector: 'app-graphs',
   templateUrl: './graph-viewer.component.html',
