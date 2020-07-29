@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, FormGroup, FormGroupDirective} from '@angular/forms';
 import { LoadGraphsService } from '../../services/load-graphs.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Subject} from "rxjs";
 
 
 @Component({
@@ -12,6 +13,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class GraphUploaderComponent implements OnInit {
   formGroupContent: FormGroup;
   formGroupFile: FormGroup;
+  subjectRefreshData: Subject<void>;
+
   constructor(
     private fb: FormBuilder,
     private graphLoader: LoadGraphsService,
@@ -19,6 +22,7 @@ export class GraphUploaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subjectRefreshData = new Subject<void>();
     this.formGroupContent = this.fb.group({
       graphName: '',
       graphContent: '',
@@ -29,7 +33,7 @@ export class GraphUploaderComponent implements OnInit {
     });
   }
   // TODO :: this method should r
-  handleSubmitContent() {
+  handleSubmitContent(contentFormDirective: FormGroupDirective) {
     if (!this.formGroupContent.valid) {
       return;
     }
@@ -38,12 +42,12 @@ export class GraphUploaderComponent implements OnInit {
     formData.append('graphContent', this.formGroupContent.get('graphContent').value);
     this.graphLoader.postGraph(formData)
       .subscribe(
-        (data) => this.handleSuccess(data),
-        (err) => this.handleError(err)
+        (data) => this.handleSuccess(data, contentFormDirective),
+        this.handleError.bind(this)
       );
   }
 
-  handleSubmitFile(value: any) {
+  handleSubmitFile(fileFormDirective: FormGroupDirective) {
     if (!this.formGroupFile.valid) {
       return;
     }
@@ -52,15 +56,18 @@ export class GraphUploaderComponent implements OnInit {
     formData.append('graphName', this.formGroupFile.get('graphName').value);
     this.graphLoader.postGraph(formData)
       .subscribe(
-        (data) => this.handleSuccess(data),
-        (err) => this.handleError(err)
+        // this.handleSuccess.bind(this),
+        (data) => this.handleSuccess(data, fileFormDirective),
+        this.handleError.bind(this)
       );
   }
 
-  // TODO :: this method should clear forms and refresh data in the display
-  handleSuccess(data) {
-    console.log('after posting data received', data);
+
+  handleSuccess(data, formDirective: FormGroupDirective) {
+    // console.log('after posting data received', data);
+    this.resetFroms(formDirective);
     this.displaySuccessSnackBar();
+    this.refreshData();
   }
 
   private displaySuccessSnackBar() {
@@ -74,5 +81,15 @@ export class GraphUploaderComponent implements OnInit {
       duration: 2000,
     });
     console.error(err);
+  }
+
+  private refreshData() {
+    this.subjectRefreshData.next();
+  }
+
+  private resetFroms(formDirective: FormGroupDirective) {
+    formDirective.reset();
+    this.formGroupFile.reset();
+    this.formGroupContent.reset();
   }
 }

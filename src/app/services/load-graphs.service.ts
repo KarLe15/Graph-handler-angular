@@ -23,13 +23,17 @@ export class LoadGraphsService {
     return this.http.get<EdgeDescriptor[]>(`${this.baseURL}/edges`);
   }
 
-  public getGraph(): Observable<GraphDescriptor> {
-    console.log('trying to load graph');
+  public getGraph(graphName?: string): Observable<GraphDescriptor> {
+    console.log('trying to load graph', graphName);
     return this.http.get<GraphDescriptor>(`${this.baseURL}/graph`);
   }
 
   public postGraph(body: FormData): Observable<any> {
     return this.http.post<any>(`${this.baseURL}/graph`, body);
+  }
+  // review this data
+  public deleteGraph(body): Observable<any> {
+    return this.http.delete(`${this.baseURL}/graph`, body);
   }
 
   public getAllGraphs(): Observable<string[]> {

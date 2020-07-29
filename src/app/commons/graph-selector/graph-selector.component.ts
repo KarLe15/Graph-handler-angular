@@ -1,16 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import {Component, Input, OnInit} from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import {Observable, Subject} from 'rxjs';
+import {LoadGraphsService} from '../../services/load-graphs.service';
 
-
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 
 @Component({
@@ -19,17 +11,20 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./graph-selector.component.scss']
 })
 export class GraphSelectorComponent implements OnInit {
+  graphsList$: Observable<string[]>;
+  selectedGraph: string;
 
-  selected = new FormControl('valid', [
-    Validators.required,
-    Validators.pattern('valid'),
-  ]);
-
-
-  matcher = new MyErrorStateMatcher();
-
-  constructor(private fb: FormBuilder) { }
+  @Input() hasToLoadGraph: Subject<string>;
+  constructor(
+    private fb: FormBuilder,
+    private graphLoader: LoadGraphsService,
+  ) { }
 
   ngOnInit() {
+    this.graphsList$ = this.graphLoader.getAllGraphs();
+  }
+
+  loadGraph(selectedGraph: string) {
+    this.hasToLoadGraph.next(selectedGraph);
   }
 }

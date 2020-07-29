@@ -1,6 +1,7 @@
 <div class="container">
 <!--  This component will handle Observables -->
-  <app-graph-selector></app-graph-selector>
+  <app-graph-selector [hasToLoadGraph]="hasToLoadGraphSubject"></app-graph-selector>
+  <h2>Graphe Courent : {{ currentGraph }} </h2>
   <div class="content-container">
     <div id="statsCard">
       <div class="example-action-buttons">

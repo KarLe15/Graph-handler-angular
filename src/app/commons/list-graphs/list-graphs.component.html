@@ -3,7 +3,12 @@
   <div class="graph-list-container">
     <mat-list #graphs class="graph-list">
       <mat-list-item class="list-item" *ngFor="let g of graphsList$ | async">
-        {{g}}
+        <div class="extended">
+          <span>{{g}}</span>
+          <button *ngIf="hasDelete" mat-mini-fab color="black" (click)="deleteGraph(g)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </mat-list-item>
     </mat-list>
   </div>

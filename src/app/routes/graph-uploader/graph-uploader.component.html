@@ -1,10 +1,11 @@
-<app-list-graphs></app-list-graphs>
+<app-list-graphs [hasToRefresh]="subjectRefreshData.asObservable()" hasDelete="true"></app-list-graphs>
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="File">
     <div class="container">
       <form
+        #fileFormDirective="ngForm"
         [formGroup]="formGroupFile"
-        (ngSubmit)="handleSubmitFile(formGroupFile.value)"
+        (ngSubmit)="handleSubmitFile(fileFormDirective)"
       >
         <div class="field">
           <mat-form-field appearance="outline">
@@ -39,8 +40,9 @@
   <mat-tab label="Points">
     <div class="container">
       <form
+        #contentFormDirective="ngForm"
         [formGroup]="formGroupContent"
-        (submit)="handleSubmitContent()"
+        (submit)="handleSubmitContent(contentFormDirective)"
       >
         <div class="field">
           <mat-form-field appearance="outline">

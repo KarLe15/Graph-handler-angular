@@ -4,6 +4,7 @@ import * as go from 'gojs';
 import {DataSyncService} from 'gojs-angular';
 import {LoadGraphsService} from '../../services/load-graphs.service';
 import {MatAccordion} from '@angular/material/expansion';
+import {Subject} from 'rxjs';
 @Component({
   selector: 'app-graphs',
   templateUrl: './graph-viewer.component.html',
@@ -11,6 +12,9 @@ import {MatAccordion} from '@angular/material/expansion';
   encapsulation: ViewEncapsulation.None
 })
 export class GraphViewerComponent implements OnInit {
+  hasToLoadGraphSubject: Subject<string>;
+  currentGraph: string;
+
   @ViewChild(MatAccordion, {static: true}) accordion: MatAccordion;
   // GoJS data
   public diagramNodeData: Array<go.ObjectData> = [];
@@ -24,11 +28,15 @@ export class GraphViewerComponent implements OnInit {
     private graphLoader: LoadGraphsService,
   ) { }
 
+
+  // TODO :: factorize all Observables to unsubscribe at the end
   ngOnInit() {
-    this.graphLoader.getGraph().subscribe((graph) => {
-      this.diagramNodeData = graph.nodes;
-      this.diagramLinkData = graph.edges;
-    });
+    this.hasToLoadGraphSubject = new Subject<string>();
+    this.hasToLoadGraphSubject.asObservable().subscribe((graphName) => {
+      this.loadGraph(graphName);
+    })
+    // TODO :: must always have a default graph
+    this.loadGraph('default');
   }
   // GoJS code
   // initialisation
@@ -85,4 +93,11 @@ export class GraphViewerComponent implements OnInit {
     this.diagramModelData = DataSyncService.syncModelData(changes, this.diagramModelData);
   }
 
+  private loadGraph(graphName: string) {
+    this.currentGraph = graphName;
+    this.graphLoader.getGraph(graphName).subscribe((graph) => {
+      this.diagramNodeData = graph.nodes;
+      this.diagramLinkData = graph.edges;
+    });
+  }
 }
